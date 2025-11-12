@@ -31,7 +31,7 @@ public enum DomainImageError: Error, LocalizedError {
     // MARK: - LocalizedError
     public var errorDescription: String? {
         switch self {
-        // Network
+            // Network
         case .invalidURL: return "Invalid URL"
         case .noInternet: return "No internet connection"
         case .timeout: return "Request timed out"
@@ -41,13 +41,13 @@ public enum DomainImageError: Error, LocalizedError {
         case .invalidContentType: return "Invalid content type"
         case .requestFailed(let error): return "Request failed: \(error.localizedDescription)"
 
-        // Data / Decode
+            // Data / Decode
         case .invalidData: return "Invalid data format"
         case .invalidImageData: return "Invalid image data"
         case .decodingFailed(let err): return "Decoding failed: \(err.localizedDescription)"
         case .emptyResponse: return "Empty response from server"
 
-        // Logic
+            // Logic
         case .maxRetriesReached: return "Max retry attempts reached"
         case .unknown: return "Unknown error"
         }

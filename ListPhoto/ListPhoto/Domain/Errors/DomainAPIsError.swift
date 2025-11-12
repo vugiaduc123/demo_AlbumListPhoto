@@ -10,27 +10,25 @@ import Foundation
 public enum DomainAPIsError: Error, LocalizedError {
     // MARK: - Request formation
     case invalidURL
-    case invalidRequest          // thêm — lỗi khi tạo URLRequest
-    
+    case invalidRequest
+
     // MARK: - Transport (network layer)
     case noInternet
     case timeout
     case requestFailed(Error)
-    case cancelled               // thêm — người dùng hủy request
-    
+    case cancelled
     // MARK: - Response handling
-//    case invalidResponse
-    case invalidStatusCode(Int)  // thêm — để biết cụ thể code
+    //    case invalidResponse
+    case invalidStatusCode(Int)
     case clientError(Int)        // 400...499
     case serverError(Int)        // 500...599
     case invalidMinType         // mime type sai
-//    case invalidData             // data rỗng hoặc không đúng format
-    
+    //    case invalidData
     // MARK: - Decoding & Parsing
     case decodingFailed
     case deCodingError
     case endCodingError
-    
+
     // MARK: - Retry & unknown
     case maxRetriesReached
     case unknown
@@ -51,8 +49,8 @@ extension DomainAPIsError {
             return "Request failed with error: \(error.localizedDescription)"
         case .cancelled:
             return "The request was cancelled."
-//        case .invalidResponse:
-//            return "Invalid response from server."
+            //        case .invalidResponse:
+            //            return "Invalid response from server."
         case .invalidStatusCode(let code):
             return "Unexpected status code: \(code)."
         case .clientError(let code):
@@ -61,8 +59,8 @@ extension DomainAPIsError {
             return "Server error (\(code))."
         case .invalidMinType:
             return "Unexpected content type."
-//        case .invalidData:
-//            return "Invalid or missing data."
+            //        case .invalidData:
+            //            return "Invalid or missing data."
         case .decodingFailed, .deCodingError:
             return "Failed to decode response."
         case .endCodingError:

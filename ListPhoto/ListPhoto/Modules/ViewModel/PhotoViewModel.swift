@@ -8,7 +8,7 @@ class PhotoViewModel: ViewModelType {
     
     var listPhoto: [PhotoEntity] = []
     private var filteredData: [PhotoEntity] = []
-
+    
     private var page = 1
     private var limit = 100
     var isFiltering: Bool = false
@@ -129,37 +129,37 @@ extension PhotoViewModel {
     
     private func loadMoreTrigger(input: Input) -> AnyPublisher<PhotoResult, Never> {
         return input.loadMore
-           .filter { [weak self] _ in
-               guard let self = self else { return false }
-               return !self.isFiltering 
-           }
-           .flatMap { [weak self] _ -> AnyPublisher<[PhotoEntity], Never> in
-               guard let self = self else { return Just([]).eraseToAnyPublisher() }
-               loadingSubject.send(true)
-               let nextPage = self.page + 1
-               return self.getLoadMore(page: nextPage, limit: self.limit)
-                   .handleEvents(receiveCompletion: { [weak self] completion in
-                       guard let self = self else { return }
-                       loadingSubject.send(false)
-                       if case .failure(let error) = completion {
-                           errorSubject.send(TrackErrors(enumError: .loadMore(0,0), error: error))
-                       }
-                   })
-                   .replaceError(with: [])
-                   .eraseToAnyPublisher()
-           }
-           .map { [weak self] items in
-               guard let self = self else { return PhotoResult(type: .loadMore(0, 0), items: []) }
-               let firtIndex = self.listPhoto.count
-               let endIndex = firtIndex + items.count
-               return PhotoResult(type: .loadMore(firtIndex, endIndex), items: items)
-           }
-           .handleEvents(receiveOutput: { [weak self] result in
-               guard let self = self else { return }
-               self.listPhoto.append(contentsOf: result.items)
-               self.page += 1
-               pageInfoSubject.send("\(self.listPhoto.count)")
-           }).eraseToAnyPublisher()
+            .filter { [weak self] _ in
+                guard let self = self else { return false }
+                return !self.isFiltering
+            }
+            .flatMap { [weak self] _ -> AnyPublisher<[PhotoEntity], Never> in
+                guard let self = self else { return Just([]).eraseToAnyPublisher() }
+                loadingSubject.send(true)
+                let nextPage = self.page + 1
+                return self.getLoadMore(page: nextPage, limit: self.limit)
+                    .handleEvents(receiveCompletion: { [weak self] completion in
+                        guard let self = self else { return }
+                        loadingSubject.send(false)
+                        if case .failure(let error) = completion {
+                            errorSubject.send(TrackErrors(enumError: .loadMore(0,0), error: error))
+                        }
+                    })
+                    .replaceError(with: [])
+                    .eraseToAnyPublisher()
+            }
+            .map { [weak self] items in
+                guard let self = self else { return PhotoResult(type: .loadMore(0, 0), items: []) }
+                let firtIndex = self.listPhoto.count
+                let endIndex = firtIndex + items.count
+                return PhotoResult(type: .loadMore(firtIndex, endIndex), items: items)
+            }
+            .handleEvents(receiveOutput: { [weak self] result in
+                guard let self = self else { return }
+                self.listPhoto.append(contentsOf: result.items)
+                self.page += 1
+                pageInfoSubject.send("\(self.listPhoto.count)")
+            }).eraseToAnyPublisher()
     }
 }
 
@@ -258,7 +258,7 @@ extension PhotoViewModel {
         case initial
         case refresh
         case loadMore(Int, Int)
-        case search(Bool) // thieu dieu kien bat dau vaf ket thuc
+        case search(Bool)
     }
     
     struct PhotoResult {

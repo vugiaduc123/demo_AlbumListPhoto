@@ -15,4 +15,3 @@ public struct PhotoEntity {
     var url: String
     var downloadURL: String
 }
-
