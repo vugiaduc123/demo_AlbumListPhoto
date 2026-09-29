@@ -1,29 +1,7 @@
 
-# Kịch bản thuyết trình — Slide 14 đến 19
 
-Đồ án NET-CORE · Nhóm 9 · Môn IE106 Thiết kế giao diện người dùng
-
-**Tổng thời lượng: 7–8 phút** (trung bình 1 phút 15 giây / slide)
-
-| Slide | Chủ đề | Lấy từ báo cáo | Thời lượng |
-|---|---|---|---|
-| 14 | Vòng đời xử lý sự cố 4 bước | Chương 4.1 + 4.2 | 1'30 |
-| 15 | Tập trung vào động từ cốt lõi | Chương 4.3 | 1'00 |
-| 16 | Nhiệm vụ cốt lõi của người dùng | Chương 4.4 | 1'15 |
-| 17 | Ba loại trạng thái cốt lõi | Chương 5.1 + 5.3 | 1'15 |
-| 18 | Hai chế độ an toàn, bốn cấp phòng ngừa | Chương 5.2 + 5.4 | 1'30 |
-| 19 | Kế hoạch Usability Testing | Chương 5.5 | 1'00 |
-
-> **Ghi chú:** slide 14–16 thuộc **Chương 4** của báo cáo (Người dùng sẽ phải làm
-> gì), slide 17–19 thuộc **Chương 5** (Người dùng có biết mình đang làm gì
-> không). Chương 6 — Phân cấp nội dung — nằm ở **slide 23**, không nằm trong
-> khoảng này.
-
----
 
 ## SLIDE 14 — Vòng đời xử lý sự cố (4 bước)
-
-*(1 phút 30 giây)*
 
 > Đến phần Thiết kế tương tác. Câu hỏi mà chương này trả lời là: **người dùng sẽ
 > phải làm gì** khi mở hệ thống lên.
